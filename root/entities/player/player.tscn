@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7kqi0cvj2pte"]
+
+[ext_resource type="Script" uid="uid://fs0ewk32jhrs" path="res://root/entities/character_entity.gd" id="1_o1sga"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1sga"]
+
+[sub_resource type="Gradient" id="Gradient_o1sga"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jav8b"]
+gradient = SubResource("Gradient_o1sga")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_o1sga")
+metadata/_custom_type_script = "uid://fs0ewk32jhrs"
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_o1sga")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="Sprites" type="Node2D" parent="Components"]
+
+[node name="Base" type="Sprite2D" parent="Components/Sprites"]
+texture = SubResource("GradientTexture2D_jav8b")
