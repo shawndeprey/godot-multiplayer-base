@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7kqi0cvj2pte"]
+[gd_scene load_steps=9 format=3 uid="uid://c7kqi0cvj2pte"]
 
-[ext_resource type="Script" uid="uid://fs0ewk32jhrs" path="res://root/entities/character_entity.gd" id="1_o1sga"]
+[ext_resource type="Script" uid="uid://uogskkq7835" path="res://root/entities/player/player.gd" id="1_jav8b"]
+[ext_resource type="Script" uid="uid://deokfcju4357a" path="res://root/entities/player/components/state_machine/player_state_machine.gd" id="2_jav8b"]
+[ext_resource type="Script" uid="uid://co4vw3v6j4eal" path="res://root/entities/player/components/state_machine/states/player_state_idle.gd" id="3_uu88l"]
+[ext_resource type="Script" uid="uid://c18ylip608uph" path="res://root/entities/player/components/direction.gd" id="4_b38dc"]
+[ext_resource type="Script" uid="uid://cfqodbs367jni" path="res://root/entities/player/components/state_machine/states/player_state_walk.gd" id="4_laou5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1sga"]
 
@@ -16,7 +20,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_o1sga")
+script = ExtResource("1_jav8b")
 metadata/_custom_type_script = "uid://fs0ewk32jhrs"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -28,3 +32,15 @@ shape = SubResource("CapsuleShape2D_o1sga")
 
 [node name="Base" type="Sprite2D" parent="Components/Sprites"]
 texture = SubResource("GradientTexture2D_jav8b")
+
+[node name="StateMachine" type="Node" parent="Components"]
+script = ExtResource("2_jav8b")
+
+[node name="Idle" type="Node" parent="Components/StateMachine"]
+script = ExtResource("3_uu88l")
+
+[node name="Walk" type="Node" parent="Components/StateMachine"]
+script = ExtResource("4_laou5")
+
+[node name="Direction" type="Node" parent="Components"]
+script = ExtResource("4_b38dc")
