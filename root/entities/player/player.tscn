@@ -1,23 +1,732 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7kqi0cvj2pte"]
+[gd_scene load_steps=29 format=3 uid="uid://c7kqi0cvj2pte"]
 
 [ext_resource type="Script" uid="uid://uogskkq7835" path="res://root/entities/player/player.gd" id="1_jav8b"]
+[ext_resource type="Texture2D" uid="uid://cm62nd5lxtfwn" path="res://root/entities/player/sprites/base/base.png" id="2_8vsn8"]
 [ext_resource type="Script" uid="uid://deokfcju4357a" path="res://root/entities/player/components/state_machine/player_state_machine.gd" id="2_jav8b"]
+[ext_resource type="Script" uid="uid://b6yhs3di7vow7" path="res://root/entities/player/sprites/base/player_base_sprite.gd" id="3_2aaio"]
 [ext_resource type="Script" uid="uid://co4vw3v6j4eal" path="res://root/entities/player/components/state_machine/states/player_state_idle.gd" id="3_uu88l"]
 [ext_resource type="Script" uid="uid://c18ylip608uph" path="res://root/entities/player/components/direction.gd" id="4_b38dc"]
 [ext_resource type="Script" uid="uid://cfqodbs367jni" path="res://root/entities/player/components/state_machine/states/player_state_walk.gd" id="4_laou5"]
+[ext_resource type="Script" uid="uid://dx704io8xol0r" path="res://root/entities/components/animations/synced_animation_player.gd" id="8_2aaio"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1sga"]
 
-[sub_resource type="Gradient" id="Gradient_o1sga"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+[sub_resource type="CanvasTexture" id="CanvasTexture_y7vi6"]
+diffuse_texture = ExtResource("2_8vsn8")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jav8b"]
-gradient = SubResource("Gradient_o1sga")
-width = 32
-height = 32
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
+[sub_resource type="Animation" id="Animation_8vsn8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_atjfv"]
+resource_name = "idle_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2aaio"]
+resource_name = "idle_down_left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_y7vi6"]
+resource_name = "idle_down_right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [23]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dm2tb"]
+resource_name = "idle_left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [20]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_72y74"]
+resource_name = "idle_right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2elxj"]
+resource_name = "idle_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_88glp"]
+resource_name = "idle_up_left"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dkv0e"]
+resource_name = "idle_up_right"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cx6fs"]
+resource_name = "walk_down"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [22, 30, 38, 30, 22, 14, 6, 14]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fb60y"]
+resource_name = "walk_down_left"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 29, 37, 29, 21, 13, 5, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s6wvo"]
+resource_name = "walk_down_right"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [23, 31, 39, 31, 23, 15, 7, 15]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_doy6j"]
+resource_name = "walk_left"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 28, 36, 28, 20, 12, 4, 12]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pmung"]
+resource_name = "walk_right"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 24, 32, 24, 16, 8, 0, 8]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_oj688"]
+resource_name = "walk_up"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 26, 34, 26, 18, 10, 2, 10]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tge0t"]
+resource_name = "walk_up_left"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [19, 27, 35, 27, 19, 11, 3, 11]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rwo4n"]
+resource_name = "walk_up_right"
+length = 0.8
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprites/Base:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 25, 33, 25, 17, 9, 1, 9]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprites/Base")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}, {
+"args": [],
+"method": &"update_followers"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dm2tb"]
+_data = {
+&"RESET": SubResource("Animation_8vsn8"),
+&"idle_down": SubResource("Animation_atjfv"),
+&"idle_down_left": SubResource("Animation_2aaio"),
+&"idle_down_right": SubResource("Animation_y7vi6"),
+&"idle_left": SubResource("Animation_dm2tb"),
+&"idle_right": SubResource("Animation_72y74"),
+&"idle_up": SubResource("Animation_2elxj"),
+&"idle_up_left": SubResource("Animation_88glp"),
+&"idle_up_right": SubResource("Animation_dkv0e"),
+&"walk_down": SubResource("Animation_cx6fs"),
+&"walk_down_left": SubResource("Animation_fb60y"),
+&"walk_down_right": SubResource("Animation_s6wvo"),
+&"walk_left": SubResource("Animation_doy6j"),
+&"walk_right": SubResource("Animation_pmung"),
+&"walk_up": SubResource("Animation_oj688"),
+&"walk_up_left": SubResource("Animation_tge0t"),
+&"walk_up_right": SubResource("Animation_rwo4n")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_jav8b")
@@ -31,7 +740,11 @@ shape = SubResource("CapsuleShape2D_o1sga")
 [node name="Sprites" type="Node2D" parent="Components"]
 
 [node name="Base" type="Sprite2D" parent="Components/Sprites"]
-texture = SubResource("GradientTexture2D_jav8b")
+texture = SubResource("CanvasTexture_y7vi6")
+hframes = 8
+vframes = 16
+frame = 22
+script = ExtResource("3_2aaio")
 
 [node name="StateMachine" type="Node" parent="Components"]
 script = ExtResource("2_jav8b")
@@ -44,3 +757,12 @@ script = ExtResource("4_laou5")
 
 [node name="Direction" type="Node" parent="Components"]
 script = ExtResource("4_b38dc")
+
+[node name="Animations" type="Node2D" parent="Components"]
+
+[node name="BaseAnimations" type="AnimationPlayer" parent="Components/Animations"]
+libraries = {
+&"": SubResource("AnimationLibrary_dm2tb")
+}
+autoplay = "idle_down"
+script = ExtResource("8_2aaio")
