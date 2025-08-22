@@ -4,6 +4,7 @@ class_name Player extends CharacterEntity
 # Components
 @onready var state_machine: PlayerStateMachine = $Components/StateMachine
 @onready var direction: PlayerDirection = $Components/Direction
+@onready var base_animations: SyncedAnimationPlayer = $Components/Animations/BaseAnimations
 
 func _ready() -> void:
 	super()
@@ -12,6 +13,6 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		state_machine.initialize()
 
-func update_animation(_state: String) -> void:
+func update_animation(state: String) -> void:
 	if !is_multiplayer_authority(): return
-	#primary_animations.pla({anim = state + "_" + direction.animation_direction()})
+	base_animations.pla({anim = state + "_" + direction.animation_direction()})
