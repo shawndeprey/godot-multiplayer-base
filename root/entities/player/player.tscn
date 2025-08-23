@@ -734,6 +734,7 @@ metadata/_custom_type_script = "uid://fs0ewk32jhrs"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_o1sga")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Components" type="Node2D" parent="."]
 
