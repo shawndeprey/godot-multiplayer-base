@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c7kqi0cvj2pte"]
+[gd_scene load_steps=30 format=3 uid="uid://c7kqi0cvj2pte"]
 
 [ext_resource type="Script" uid="uid://uogskkq7835" path="res://root/entities/player/player.gd" id="1_jav8b"]
 [ext_resource type="Texture2D" uid="uid://cm62nd5lxtfwn" path="res://root/entities/player/sprites/base/base.png" id="2_8vsn8"]
@@ -8,6 +8,23 @@
 [ext_resource type="Script" uid="uid://c18ylip608uph" path="res://root/entities/player/components/direction.gd" id="4_b38dc"]
 [ext_resource type="Script" uid="uid://cfqodbs367jni" path="res://root/entities/player/components/state_machine/states/player_state_walk.gd" id="4_laou5"]
 [ext_resource type="Script" uid="uid://dx704io8xol0r" path="res://root/entities/components/animations/synced_animation_player.gd" id="8_2aaio"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2aaio"]
+properties/0/path = NodePath("Components/StateMachine:current_state_name")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:collision_layer")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:collision_mask")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:layer")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:target_position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1sga"]
 
@@ -731,6 +748,11 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_jav8b")
 metadata/_custom_type_script = "uid://fs0ewk32jhrs"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.05
+delta_interval = 0.2
+replication_config = SubResource("SceneReplicationConfig_2aaio")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_o1sga")

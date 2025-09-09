@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://838eg03w2car"]
+
+[ext_resource type="Script" uid="uid://rd378bwflh6g" path="res://root/ui/network/network.gd" id="1_xiam1"]
+
+[node name="Network" type="CanvasLayer"]
+script = ExtResource("1_xiam1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -90.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HostGame" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Host Game"
+
+[node name="JoinGame" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="HostData" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.5
+offset_top = -130.0
+offset_right = 283.5
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Hello World"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="pressed" from="Control/VBoxContainer/HostGame" to="." method="_on_host_game_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/JoinGame" to="." method="_on_join_game_pressed"]

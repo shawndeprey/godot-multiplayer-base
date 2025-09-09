@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://globals/game_access.gd"
+Gui="*res://globals/ui_access.gd"
 
 [display]
 

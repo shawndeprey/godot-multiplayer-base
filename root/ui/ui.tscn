@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfht4gb0bd2gu"]
+
+[ext_resource type="Script" uid="uid://1oiatio0uh4u" path="res://root/ui/ui.gd" id="1_heiyf"]
+[ext_resource type="PackedScene" uid="uid://838eg03w2car" path="res://root/ui/network/network.tscn" id="2_mr65d"]
+
+[node name="UI" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_heiyf")
+
+[node name="Network" parent="." instance=ExtResource("2_mr65d")]
