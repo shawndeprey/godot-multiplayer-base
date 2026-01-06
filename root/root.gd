@@ -4,7 +4,6 @@ class_name Root extends Node2D
 @onready var multiplayer_manager: MultiplayerManager = $MultiplayerManager
 
 func _ready() -> void:
-	# TESTING - TEMPORARY INIT LOGIC
 	multiplayer_manager._spawn_local_player()
 
 func reset_game() -> void:
