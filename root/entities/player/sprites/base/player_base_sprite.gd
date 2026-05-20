@@ -1,11 +1,10 @@
 @tool
 class_name PlayerBaseSprite extends Sprite2D
 
-var followers: Array[Sprite2D] = []
+@export var followers: Array[Sprite2D] = []
 var previous_frame: int = -1
 
 func _ready() -> void:
-	followers = []
 	update_followers()
 
 func _process(_delta):

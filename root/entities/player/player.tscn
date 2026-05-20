@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c7kqi0cvj2pte"]
+[gd_scene format=3 uid="uid://c7kqi0cvj2pte"]
 
 [ext_resource type="Script" uid="uid://uogskkq7835" path="res://root/entities/player/player.gd" id="1_jav8b"]
 [ext_resource type="Texture2D" uid="uid://cm62nd5lxtfwn" path="res://root/entities/player/sprites/base/base.png" id="2_8vsn8"]
@@ -745,47 +745,45 @@ _data = {
 &"walk_up_right": SubResource("Animation_rwo4n")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=555739641]
 script = ExtResource("1_jav8b")
 metadata/_custom_type_script = "uid://fs0ewk32jhrs"
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=708220608]
 replication_interval = 0.05
 delta_interval = 0.2
 replication_config = SubResource("SceneReplicationConfig_2aaio")
 
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="." unique_id=1681346592]
 shape = SubResource("CapsuleShape2D_o1sga")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="Components" type="Node2D" parent="."]
+[node name="Components" type="Node2D" parent="." unique_id=1677134605]
 
-[node name="Sprites" type="Node2D" parent="Components"]
+[node name="Sprites" type="Node2D" parent="Components" unique_id=157497486]
 
-[node name="Base" type="Sprite2D" parent="Components/Sprites"]
+[node name="Base" type="Sprite2D" parent="Components/Sprites" unique_id=414736365]
 texture = SubResource("CanvasTexture_y7vi6")
 hframes = 8
 vframes = 16
 frame = 22
 script = ExtResource("3_2aaio")
 
-[node name="StateMachine" type="Node" parent="Components"]
+[node name="StateMachine" type="Node" parent="Components" unique_id=844112317]
 script = ExtResource("2_jav8b")
 
-[node name="Idle" type="Node" parent="Components/StateMachine"]
+[node name="Idle" type="Node" parent="Components/StateMachine" unique_id=837573619]
 script = ExtResource("3_uu88l")
 
-[node name="Walk" type="Node" parent="Components/StateMachine"]
+[node name="Walk" type="Node" parent="Components/StateMachine" unique_id=1106264664]
 script = ExtResource("4_laou5")
 
-[node name="Direction" type="Node" parent="Components"]
+[node name="Direction" type="Node" parent="Components" unique_id=1808662532]
 script = ExtResource("4_b38dc")
 
-[node name="Animations" type="Node2D" parent="Components"]
+[node name="Animations" type="Node2D" parent="Components" unique_id=1392402526]
 
-[node name="BaseAnimations" type="AnimationPlayer" parent="Components/Animations"]
-libraries = {
-&"": SubResource("AnimationLibrary_dm2tb")
-}
-autoplay = "idle_down"
+[node name="BaseAnimations" type="AnimationPlayer" parent="Components/Animations" unique_id=1259391727]
+libraries/ = SubResource("AnimationLibrary_dm2tb")
+autoplay = &"idle_down"
 script = ExtResource("8_2aaio")
